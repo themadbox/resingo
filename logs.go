@@ -31,8 +31,7 @@ func NewLogs(ctx *Context) (*Logs, error) {
 	if cfg.PubNub.PubKey != "" && cfg.PubNub.SubKey != "" {
 		n := messaging.NewPubnub(
 			cfg.PubNub.PubKey,
-			cfg.PubNub.SubKey, "", "", false, "",
-		)
+			cfg.PubNub.SubKey, "", "", false, "", nil)
 		return &Logs{nub: n, ctx: ctx, stop: make(chan struct{})}, nil
 	}
 	return nil, errors.New("resingo: no pubnub details found")
